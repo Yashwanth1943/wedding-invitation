@@ -1,4 +1,5 @@
 import { motion as Motion } from 'framer-motion'
+import { staggerItem } from './animationVariants'
 
 const iconClassName = 'mt-0.5 h-4 w-4 flex-none text-[#d4af37]'
 
@@ -41,9 +42,8 @@ const Row = ({ type, label, value }) => (
 function EventCard({ title, date, time, venue, index }) {
   return (
     <Motion.article
-      initial={{ opacity: 0, y: 22 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.45, delay: index * 0.08 }}
+      variants={staggerItem}
+      custom={index}
       className="rounded-3xl border border-[#e5cc9a] bg-[#fff8ea] p-5 shadow-[0_12px_28px_rgba(59,15,15,0.12)] will-change-transform sm:p-6"
     >
       <h3 className="font-playfair text-2xl text-[#6b1d1d]">{title}</h3>

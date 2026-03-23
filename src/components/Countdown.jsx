@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { motion as Motion } from 'framer-motion'
+import { staggerContainer, staggerItem, VIEWPORT_ONCE } from './animationVariants'
 
 const initialTimer = { days: '00', hours: '00', minutes: '00', seconds: '00' }
 
@@ -45,20 +46,25 @@ function Countdown({ targetDate }) {
   ]
 
   return (
-    <div className="mt-8 grid w-full max-w-xs grid-cols-2 gap-3 sm:max-w-lg sm:grid-cols-4">
+    <Motion.div
+      className="mt-8 grid w-full max-w-xs grid-cols-2 gap-3 sm:max-w-lg sm:grid-cols-4"
+      variants={staggerContainer}
+      initial="hidden"
+      whileInView="visible"
+      viewport={VIEWPORT_ONCE}
+    >
       {items.map((item, index) => (
         <Motion.div
           key={item.label}
-          initial={{ opacity: 0, y: 18 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.45, delay: index * 0.08 }}
+          variants={staggerItem}
+          custom={index}
           className="glass-card rounded-2xl px-3 py-4 text-center"
         >
           <p className="font-playfair text-2xl font-semibold text-amber-50 sm:text-3xl">{item.value}</p>
           <p className="text-[11px] uppercase tracking-[0.2em] text-amber-100/90">{item.label}</p>
         </Motion.div>
       ))}
-    </div>
+    </Motion.div>
   )
 }
 

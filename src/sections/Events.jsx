@@ -1,5 +1,11 @@
 import { motion as Motion } from 'framer-motion'
 import EventCard from '../components/EventCard'
+import {
+  sectionReveal,
+  staggerContainer,
+  staggerItem,
+  VIEWPORT_ONCE,
+} from '../components/animationVariants'
 
 const events = [
   {
@@ -12,19 +18,30 @@ const events = [
 
 function Events() {
   return (
-    <section id="events" className="bg-[#f9efdf] px-4 py-16 sm:px-6 sm:py-20">
+    <Motion.section
+      id="events"
+      className="bg-[#f9efdf] px-4 py-16 sm:px-6 sm:py-20"
+      variants={sectionReveal}
+      initial="hidden"
+      whileInView="visible"
+      viewport={VIEWPORT_ONCE}
+    >
       <div className="mx-auto w-full max-w-6xl">
         <Motion.div
-          initial={{ opacity: 0, y: 24 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
+          variants={staggerItem}
           className="text-center"
         >
           <p className="text-xs font-semibold uppercase tracking-[0.25em] text-[#6b1d1d]">Celebrations</p>
           <h2 className="mt-3 font-playfair text-3xl text-[#3b0f0f] sm:text-4xl">Wedding Events</h2>
         </Motion.div>
 
-        <div className="mt-10 w-full flex justify-center">
+        <Motion.div
+          className="mt-10 flex w-full justify-center"
+          variants={staggerContainer}
+          initial="hidden"
+          whileInView="visible"
+          viewport={VIEWPORT_ONCE}
+        >
           {events.map((event, index) => (
             <EventCard
               key={event.title}
@@ -35,9 +52,9 @@ function Events() {
               index={index}
             />
           ))}
-        </div>
+        </Motion.div>
       </div>
-    </section>
+    </Motion.section>
   )
 }
 

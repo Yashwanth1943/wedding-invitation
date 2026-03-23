@@ -1,4 +1,12 @@
 import { motion as Motion } from 'framer-motion'
+import {
+  galleryCard,
+  LUXURY_EASE,
+  sectionReveal,
+  staggerContainer,
+  staggerItem,
+  VIEWPORT_ONCE,
+} from '../components/animationVariants'
 import img1 from '../assets/Images/img1.jpeg'
 import img2 from '../assets/Images/img2.jpeg'
 import img3 from '../assets/Images/img3.jpeg'
@@ -8,25 +16,36 @@ const galleryImages = [img1, img2, img3, img4]
 
 function Gallery() {
   return (
-    <section id="gallery" className="bg-[#fdf6ea] px-4 py-16 sm:px-6 sm:py-20">
+    <Motion.section
+      id="gallery"
+      className="bg-[#fdf6ea] px-4 py-16 sm:px-6 sm:py-20"
+      variants={sectionReveal}
+      initial="hidden"
+      whileInView="visible"
+      viewport={VIEWPORT_ONCE}
+    >
       <div className="mx-auto w-full max-w-6xl">
         <Motion.div
-          initial={{ opacity: 0, y: 24 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
+          variants={staggerItem}
           className="text-center"
         >
           <p className="text-xs font-semibold uppercase tracking-[0.25em] text-[#6b1d1d]">Memories</p>
           <h2 className="mt-3 font-playfair text-3xl text-[#3b0f0f] sm:text-4xl">Our Story In Frames</h2>
         </Motion.div>
 
-        <div className="mt-10 grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-4">
+        <Motion.div
+          className="mt-10 grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-4"
+          variants={staggerContainer}
+          initial="hidden"
+          whileInView="visible"
+          viewport={VIEWPORT_ONCE}
+        >
           {galleryImages.map((image, index) => (
             <Motion.div
               key={`${index}-${image}`}
-              initial={{ opacity: 0, y: 18 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.45, delay: index * 0.06 }}
+              variants={galleryCard}
+              custom={index}
+              whileHover={{ scale: 1.03, transition: { duration: 0.22, ease: LUXURY_EASE } }}
               className="overflow-hidden rounded-2xl border border-[#e4ca99] bg-[#fff7e6] shadow-[0_8px_22px_rgba(59,15,15,0.12)] will-change-transform"
             >
               <img
@@ -39,9 +58,9 @@ function Gallery() {
               />
             </Motion.div>
           ))}
-        </div>
+        </Motion.div>
       </div>
-    </section>
+    </Motion.section>
   )
 }
 
