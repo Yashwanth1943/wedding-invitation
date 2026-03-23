@@ -45,7 +45,8 @@ function Gallery() {
               key={`${index}-${image}`}
               variants={galleryCard}
               custom={index}
-              whileHover={{ scale: 1.03, transition: { duration: 0.22, ease: LUXURY_EASE } }}
+              whileHover={{ scale: 1.03, transition: { duration: 0.6, ease: LUXURY_EASE } }}
+              whileTap={{ scale: 0.99, transition: { duration: 0.6, ease: LUXURY_EASE } }}
               className="overflow-hidden rounded-2xl border border-[#e4ca99] bg-[#fff7e6] shadow-[0_8px_22px_rgba(59,15,15,0.12)] will-change-transform"
             >
               <img

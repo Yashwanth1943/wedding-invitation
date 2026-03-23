@@ -65,5 +65,5 @@ export const galleryCard = {
 export const subtleButtonMotion = {
   whileHover: { scale: 1.05 },
   whileTap: { scale: 0.98 },
-  transition: { duration: 0.22, ease: LUXURY_EASE },
+  transition: { duration: 0.6, ease: LUXURY_EASE },
 }

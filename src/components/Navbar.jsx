@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { AnimatePresence, motion as Motion } from 'framer-motion'
+import { LUXURY_EASE } from './animationVariants'
 
 const navItems = [
   { label: 'Home', href: '#home' },
@@ -63,7 +64,7 @@ function Navbar() {
             initial={{ opacity: 0, y: -12 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -12 }}
-            transition={{ duration: 0.25 }}
+            transition={{ duration: 0.6, ease: LUXURY_EASE }}
             className="border-t border-[#d4af37]/35 bg-[rgba(59,15,15,0.95)] px-4 pb-4 pt-2 md:hidden"
           >
             <ul className="flex flex-col gap-2">
