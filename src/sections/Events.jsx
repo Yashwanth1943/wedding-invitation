@@ -16,8 +16,7 @@ function Events() {
       <div className="mx-auto w-full max-w-6xl">
         <Motion.div
           initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.4 }}
+          animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
           className="text-center"
         >
@@ -43,3 +42,4 @@ function Events() {
 }
 
 export default Events
+

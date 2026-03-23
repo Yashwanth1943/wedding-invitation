@@ -6,7 +6,14 @@ function Hero() {
   return (
     <section
       id="home"
-      className="relative flex min-h-screen items-center justify-center overflow-hidden bg-gradient-to-b from-[#6b1d1d] via-[#4b1414] to-[#3b0f0f] px-4 pb-16 pt-28 text-white sm:px-6"
+      className="relative flex min-h-[100dvh] items-center justify-center overflow-hidden px-4 pb-16 pt-28 text-white sm:px-6"
+      style={{
+        background: [
+          'radial-gradient(circle at 52% 28%, rgba(211,154,66,0.14) 0%, rgba(211,154,66,0) 56%)',
+          'radial-gradient(circle at 88% 16%, rgba(149,32,32,0.26) 0%, rgba(149,32,32,0) 52%)',
+          'linear-gradient(180deg, #2b0b0b 0%, #411111 20%, #5a1818 42%, #6b1d1d 58%, #471313 80%, #2f0c0c 100%)',
+        ].join(','),
+      }}
     >
       <div
         className="pointer-events-none absolute inset-0 bg-cover bg-center opacity-20"
@@ -15,6 +22,7 @@ function Hero() {
       <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-black/25 via-black/40 to-black/45" />
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(255,219,170,0.25),transparent_44%)]" />
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_bottom_left,rgba(255,182,193,0.2),transparent_55%)]" />
+      <div aria-hidden="true" className="pointer-events-none absolute inset-0 noise-texture" />
 
       <div className="relative mx-auto flex w-full max-w-3xl flex-col items-center text-center">
         <Motion.p
@@ -60,4 +68,5 @@ function Hero() {
 }
 
 export default Hero
+
 

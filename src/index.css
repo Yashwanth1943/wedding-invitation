@@ -7,15 +7,22 @@
   --maroon: #6b1d1d;
   --maroon-deep: #3b0f0f;
   --gold: #d4af37;
+  --noise-svg: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220' viewBox='0 0 220 220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.55' numOctaves='2' seed='8' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='220' height='220' filter='url(%23n)' opacity='0.2'/%3E%3C/svg%3E");
 }
 
 html {
   scroll-behavior: smooth;
 }
 
+html,
+body,
+#root {
+  min-height: 100dvh;
+}
+
 body {
   margin: 0;
-  overflow-x: hidden;
+  overflow-x: clip;
   font-family: 'Inter', sans-serif;
   color: #2f2730;
   background:
@@ -50,7 +57,14 @@ h3 {
   border: 1px solid rgba(255, 255, 255, 0.5);
   background: rgba(255, 255, 255, 0.2);
   box-shadow: 0 10px 35px rgba(111, 54, 76, 0.16);
-  backdrop-filter: blur(8px);
+}
+
+.noise-texture {
+  background-image: var(--noise-svg);
+  background-repeat: repeat;
+  background-size: 220px 220px;
+  opacity: 0.012;
+  will-change: opacity;
 }
 
 @keyframes fadeUp {

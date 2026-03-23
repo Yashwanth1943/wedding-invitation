@@ -9,8 +9,7 @@ function Location() {
       <div className="mx-auto w-full max-w-6xl">
         <Motion.div
           initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.4 }}
+          animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
           className="text-center"
         >
@@ -23,7 +22,7 @@ function Location() {
             href={mapLink}
             target="_blank"
             rel="noreferrer"
-            className="mt-4 inline-flex min-h-11 items-center justify-center rounded-full bg-[#6b1d1d] px-5 text-sm font-semibold text-[#f6d78f] transition hover:-translate-y-0.5 hover:bg-[#3b0f0f]"
+            className="mt-4 inline-flex min-h-11 items-center justify-center rounded-full bg-[#6b1d1d] px-5 text-sm font-semibold text-[#f6d78f]"
           >
             Open in Google Maps
           </a>
@@ -31,10 +30,9 @@ function Location() {
 
         <Motion.div
           initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.3 }}
+          animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.55, delay: 0.1 }}
-          className="mt-8 overflow-hidden rounded-3xl border border-[#e1c691] bg-[#fff8ea] shadow-[0_12px_28px_rgba(59,15,15,0.14)]"
+          className="mt-8 overflow-hidden rounded-3xl border border-[#e1c691] bg-[#fff8ea] shadow-[0_12px_28px_rgba(59,15,15,0.14)] will-change-transform"
         >
           <div className="h-72 w-full sm:h-80 md:h-[26rem]">
             <iframe
@@ -53,3 +51,4 @@ function Location() {
 }
 
 export default Location
+

@@ -27,8 +27,8 @@ function Navbar() {
     <header
       className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
         isScrolled
-          ? 'border-b border-[#d4af37]/40 bg-[rgba(59,15,15,0.9)] backdrop-blur-xl'
-          : 'border-b border-transparent bg-[rgba(59,15,15,0.35)] backdrop-blur-md'
+          ? 'border-b border-[#d4af37]/40 bg-[rgba(59,15,15,0.9)]'
+          : 'border-b border-transparent bg-[rgba(59,15,15,0.35)]'
       }`}
     >
       <nav className="mx-auto flex w-full max-w-6xl items-center justify-between px-4 py-3 sm:px-6">
@@ -49,7 +49,7 @@ function Navbar() {
         <ul className="hidden items-center gap-6 md:flex">
           {navItems.map((item) => (
             <li key={item.href}>
-              <a href={item.href} className="text-sm font-medium text-[#f3d37b]/90 transition hover:text-[#fff2c3]">
+              <a href={item.href} className="text-sm font-medium text-[#f3d37b]/90">
                 {item.label}
               </a>
             </li>
@@ -72,7 +72,7 @@ function Navbar() {
                   <a
                     href={item.href}
                     onClick={closeMenu}
-                    className="block min-h-11 rounded-xl border border-[#d4af37]/30 bg-white/10 px-4 py-3 text-base font-medium text-[#f3d37b] transition hover:bg-white/15"
+                    className="block min-h-11 rounded-xl border border-[#d4af37]/30 bg-white/10 px-4 py-3 text-base font-medium text-[#f3d37b]"
                   >
                     {item.label}
                   </a>

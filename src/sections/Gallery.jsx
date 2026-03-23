@@ -12,8 +12,7 @@ function Gallery() {
       <div className="mx-auto w-full max-w-6xl">
         <Motion.div
           initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.4 }}
+          animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
           className="text-center"
         >
@@ -26,10 +25,9 @@ function Gallery() {
             <Motion.div
               key={`${index}-${image}`}
               initial={{ opacity: 0, y: 18 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.25 }}
+              animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.45, delay: index * 0.06 }}
-              className="group overflow-hidden rounded-2xl border border-[#e4ca99] bg-[#fff7e6] shadow-[0_8px_22px_rgba(59,15,15,0.12)]"
+              className="overflow-hidden rounded-2xl border border-[#e4ca99] bg-[#fff7e6] shadow-[0_8px_22px_rgba(59,15,15,0.12)] will-change-transform"
             >
               <img
                 src={image}
@@ -37,7 +35,7 @@ function Gallery() {
                 loading="lazy"
                 decoding="async"
                 sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
-                className="h-36 w-full object-cover transition duration-500 group-hover:scale-110 sm:h-48"
+                className="h-36 w-full object-cover sm:h-48"
               />
             </Motion.div>
           ))}
@@ -48,4 +46,5 @@ function Gallery() {
 }
 
 export default Gallery
+
 
