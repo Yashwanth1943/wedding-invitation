@@ -8,7 +8,7 @@ const galleryImages = [img1, img2, img3, img4]
 
 function Gallery() {
   return (
-    <section id="gallery" className="bg-[#fffdf8] px-4 py-16 sm:px-6 sm:py-20">
+    <section id="gallery" className="bg-[#fdf6ea] px-4 py-16 sm:px-6 sm:py-20">
       <div className="mx-auto w-full max-w-6xl">
         <Motion.div
           initial={{ opacity: 0, y: 24 }}
@@ -17,8 +17,8 @@ function Gallery() {
           transition={{ duration: 0.5 }}
           className="text-center"
         >
-          <p className="text-xs font-semibold uppercase tracking-[0.25em] text-[#8f2946]">Memories</p>
-          <h2 className="mt-3 font-playfair text-3xl text-[#6e1f35] sm:text-4xl">Our Story In Frames</h2>
+          <p className="text-xs font-semibold uppercase tracking-[0.25em] text-[#6b1d1d]">Memories</p>
+          <h2 className="mt-3 font-playfair text-3xl text-[#3b0f0f] sm:text-4xl">Our Story In Frames</h2>
         </Motion.div>
 
         <div className="mt-10 grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-4">
@@ -29,7 +29,7 @@ function Gallery() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.25 }}
               transition={{ duration: 0.45, delay: index * 0.06 }}
-              className="group overflow-hidden rounded-2xl border border-[#f0d9c6] bg-[#fff8ef] shadow-[0_8px_22px_rgba(111,54,76,0.12)]"
+              className="group overflow-hidden rounded-2xl border border-[#e4ca99] bg-[#fff7e6] shadow-[0_8px_22px_rgba(59,15,15,0.12)]"
             >
               <img
                 src={image}

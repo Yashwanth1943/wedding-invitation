@@ -1,13 +1,12 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap');
 @import 'tailwindcss';
 
 :root {
-  --ivory: #fff8ef;
-  --cream: #f8efe1;
-  --blush: #f7e2e9;
-  --maroon: #6e1f35;
-  --rosewood: #8f2946;
-  --gold: #cf9f47;
+  --ivory: #fef8ef;
+  --cream: #f7ebdb;
+  --maroon: #6b1d1d;
+  --maroon-deep: #3b0f0f;
+  --gold: #d4af37;
 }
 
 html {
@@ -20,9 +19,9 @@ body {
   font-family: 'Inter', sans-serif;
   color: #2f2730;
   background:
-    radial-gradient(circle at 10% 20%, #fff8ef 0%, transparent 40%),
-    radial-gradient(circle at 90% 10%, #fde8f0 0%, transparent 35%),
-    #fffaf6;
+    radial-gradient(circle at 10% 20%, #fdf4e8 0%, transparent 40%),
+    radial-gradient(circle at 90% 10%, #f7ebdb 0%, transparent 35%),
+    #fdf6ea;
 }
 
 h1,
@@ -41,6 +40,10 @@ h3 {
 
 .font-playfair-sc {
   font-family: 'Playfair Display', serif;
+}
+
+.font-cinzel {
+  font-family: 'Cinzel', serif;
 }
 
 .glass-card {

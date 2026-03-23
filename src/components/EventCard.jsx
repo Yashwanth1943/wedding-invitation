@@ -1,6 +1,6 @@
 import { motion as Motion } from 'framer-motion'
 
-const iconClassName = 'mt-0.5 h-4 w-4 flex-none text-[#b7883b]'
+const iconClassName = 'mt-0.5 h-4 w-4 flex-none text-[#d4af37]'
 
 const Icon = ({ type }) => {
   if (type === 'date') {
@@ -32,8 +32,8 @@ const Icon = ({ type }) => {
 const Row = ({ type, label, value }) => (
   <p className="flex items-start gap-2">
     <Icon type={type} />
-    <span>
-      <span className="font-semibold text-[#8f2946]">{label}:</span> {value}
+      <span>
+      <span className="font-semibold text-[#6b1d1d]">{label}:</span> {value}
     </span>
   </p>
 )
@@ -45,9 +45,9 @@ function EventCard({ title, date, time, venue, index }) {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.35 }}
       transition={{ duration: 0.45, delay: index * 0.08 }}
-      className="rounded-3xl border border-[#ecd8bd] bg-[#fffaf3] p-5 shadow-[0_12px_28px_rgba(111,54,76,0.12)] transition duration-300 hover:-translate-y-1 hover:scale-[1.01] hover:shadow-[0_18px_35px_rgba(111,54,76,0.18)] sm:p-6"
+      className="rounded-3xl border border-[#e5cc9a] bg-[#fff8ea] p-5 shadow-[0_12px_28px_rgba(59,15,15,0.12)] transition duration-300 hover:-translate-y-1 hover:scale-[1.01] hover:shadow-[0_18px_35px_rgba(59,15,15,0.18)] sm:p-6"
     >
-      <h3 className="font-playfair text-2xl text-[#6e1f35]">{title}</h3>
+      <h3 className="font-playfair text-2xl text-[#6b1d1d]">{title}</h3>
       <div className="mt-4 space-y-2 text-sm text-zinc-700 sm:text-base">
         <Row type="date" label="Date" value={date} />
         <Row type="time" label="Time" value={time} />

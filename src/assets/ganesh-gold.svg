@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="320" viewBox="0 0 320 320" fill="none">
+  <defs>
+    <linearGradient id="goldStroke" x1="62" y1="58" x2="258" y2="262" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#F5D889"/>
+      <stop offset="0.52" stop-color="#D4AF37"/>
+      <stop offset="1" stop-color="#B98A22"/>
+    </linearGradient>
+    <radialGradient id="goldFill" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(160 154) rotate(90) scale(136)">
+      <stop stop-color="#FBE7A7" stop-opacity="0.95"/>
+      <stop offset="1" stop-color="#D4AF37" stop-opacity="0.18"/>
+    </radialGradient>
+  </defs>
+
+  <circle cx="160" cy="160" r="120" fill="url(#goldFill)" />
+  <path
+    d="M160 78C132 78 110 101 110 128C110 147 121 163 138 171V191C138 214 154 231 177 231C195 231 210 219 214 202"
+    stroke="url(#goldStroke)"
+    stroke-width="10"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+  />
+  <path
+    d="M176 128C176 115 186 104 199 104C212 104 222 115 222 128C222 137 217 145 209 149L195 156"
+    stroke="url(#goldStroke)"
+    stroke-width="10"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+  />
+  <path
+    d="M176 156C186 156 194 164 194 174C194 184 186 192 176 192C166 192 158 184 158 174"
+    stroke="url(#goldStroke)"
+    stroke-width="10"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+  />
+  <path
+    d="M142 128C138 139 130 148 120 153"
+    stroke="url(#goldStroke)"
+    stroke-width="10"
+    stroke-linecap="round"
+  />
+  <path
+    d="M134 109L121 96"
+    stroke="url(#goldStroke)"
+    stroke-width="10"
+    stroke-linecap="round"
+  />
+  <path
+    d="M193 86L204 74"
+    stroke="url(#goldStroke)"
+    stroke-width="10"
+    stroke-linecap="round"
+  />
+</svg>

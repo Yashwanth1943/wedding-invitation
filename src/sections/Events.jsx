@@ -12,7 +12,7 @@ const events = [
 
 function Events() {
   return (
-    <section id="events" className="bg-[#fff6f1] px-4 py-16 sm:px-6 sm:py-20">
+    <section id="events" className="bg-[#f9efdf] px-4 py-16 sm:px-6 sm:py-20">
       <div className="mx-auto w-full max-w-6xl">
         <Motion.div
           initial={{ opacity: 0, y: 24 }}
@@ -21,8 +21,8 @@ function Events() {
           transition={{ duration: 0.5 }}
           className="text-center"
         >
-          <p className="text-xs font-semibold uppercase tracking-[0.25em] text-[#8f2946]">Celebrations</p>
-          <h2 className="mt-3 font-playfair text-3xl text-[#6e1f35] sm:text-4xl">Wedding Events</h2>
+          <p className="text-xs font-semibold uppercase tracking-[0.25em] text-[#6b1d1d]">Celebrations</p>
+          <h2 className="mt-3 font-playfair text-3xl text-[#3b0f0f] sm:text-4xl">Wedding Events</h2>
         </Motion.div>
 
         <div className="mt-10 w-full flex justify-center">
@@ -43,4 +43,3 @@ function Events() {
 }
 
 export default Events
-
