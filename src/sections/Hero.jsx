@@ -1,13 +1,23 @@
 import { motion as Motion } from 'framer-motion'
 import {
+  LUXURY_EASE,
   heroTextContainer,
   heroTextItem,
 } from '../components/animationVariants'
 import Countdown from '../components/Countdown'
 
+const heroSectionReveal = {
+  hidden: { opacity: 0, y: 20 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.86, ease: LUXURY_EASE },
+  },
+}
+
 function Hero() {
   return (
-    <section
+    <Motion.section
       id="home"
       className="relative flex min-h-[calc(100dvh)] scroll-mt-24 items-center justify-center overflow-hidden px-4 py-10 text-white sm:px-6"
       style={{
@@ -20,6 +30,9 @@ function Hero() {
         backgroundRepeat: 'no-repeat, no-repeat',
         backgroundAttachment: 'scroll, scroll',
       }}
+      variants={heroSectionReveal}
+      initial="hidden"
+      animate="visible"
     >
       <Motion.div
         className="relative mx-auto flex w-full max-w-3xl flex-col items-center justify-center text-center"
@@ -57,10 +70,9 @@ function Hero() {
 
         <Countdown targetDate="2026-04-02T09:18:00+05:30" />
       </Motion.div>
-    </section>
+    </Motion.section>
   )
 }
 
 export default Hero
-
 

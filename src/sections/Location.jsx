@@ -1,5 +1,6 @@
 import { motion as Motion } from 'framer-motion'
 import {
+  inViewReveal,
   staggerItem,
   subtleButtonMotion,
   VIEWPORT_ONCE,
@@ -16,11 +17,11 @@ function Location() {
     >
       <div className="mx-auto w-full max-w-6xl">
         <Motion.div
-          variants={staggerItem}
+          initial={inViewReveal.initial}
+          whileInView={inViewReveal.whileInView}
+          transition={inViewReveal.transition}
+          viewport={inViewReveal.viewport}
           className="text-center"
-          initial="hidden"
-          whileInView="visible"
-          viewport={VIEWPORT_ONCE}
         >
           <p className="text-xs font-semibold uppercase tracking-[0.25em] text-[#6b1d1d]">Venue</p>
           <h2 className="mt-3 font-playfair text-3xl text-[#3b0f0f] sm:text-4xl">Join Us At</h2>

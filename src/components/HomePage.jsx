@@ -37,7 +37,11 @@ function MusicToggle({ isPlaying, onToggle }) {
       aria-label={isPlaying ? 'Pause background music' : 'Play background music'}
       whileTap={subtleButtonMotion.whileTap}
       transition={subtleButtonMotion.transition}
-      style={{ willChange: 'transform, opacity' }}
+      // style={{ willChange: 'transform, opacity' }}
+      style={{
+        transform:'translateZ(0)',
+        willChange:'transform'
+      }}
     >
       {isPlaying ? 'Pause Music' : 'Play Music'}
     </Motion.button>
@@ -71,7 +75,11 @@ function ScrollToTopButton() {
       aria-label="Scroll to top"
       whileTap={subtleButtonMotion.whileTap}
       transition={subtleButtonMotion.transition}
-      style={{ willChange: 'transform, opacity' }}
+      // style={{ willChange: 'transform, opacity' }}
+      style={{
+        transform: 'translateZ(0)',
+        willChange:'transform'
+      }}
     >
       Top
     </Motion.button>

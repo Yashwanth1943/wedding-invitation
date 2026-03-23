@@ -1,9 +1,9 @@
 import { motion as Motion } from 'framer-motion'
 import {
   galleryCard,
+  inViewReveal,
   LUXURY_EASE,
   staggerContainer,
-  staggerItem,
   VIEWPORT_ONCE,
 } from '../components/animationVariants'
 import img1 from '../assets/Images/img1.jpeg'
@@ -21,11 +21,11 @@ function Gallery() {
     >
       <div className="mx-auto w-full max-w-6xl">
         <Motion.div
-          variants={staggerItem}
+          initial={inViewReveal.initial}
+          whileInView={inViewReveal.whileInView}
+          transition={inViewReveal.transition}
+          viewport={inViewReveal.viewport}
           className="text-center"
-          initial="hidden"
-          whileInView="visible"
-          viewport={VIEWPORT_ONCE}
         >
           <p className="text-xs font-semibold uppercase tracking-[0.25em] text-[#6b1d1d]">Memories</p>
           <h2 className="mt-3 font-playfair text-3xl text-[#3b0f0f] sm:text-4xl">Our Story In Frames</h2>
@@ -63,6 +63,5 @@ function Gallery() {
 }
 
 export default Gallery
-
 
 

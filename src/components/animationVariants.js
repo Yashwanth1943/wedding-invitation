@@ -5,31 +5,35 @@ export const VIEWPORT_ONCE = {
   amount: 0.2,
 }
 
-export const sectionReveal = {
-  hidden: { opacity: 0, y: 20 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.82, ease: LUXURY_EASE },
-  },
+const BASE_TRANSITION = {
+  duration: 0.78,
+  ease: LUXURY_EASE,
+}
+
+export const inViewReveal = {
+  initial: { opacity: 0, y: 30 },
+  whileInView: { opacity: 1, y: 0 },
+  viewport: VIEWPORT_ONCE,
+  transition: BASE_TRANSITION,
 }
 
 export const staggerContainer = {
-  hidden: {},
+  hidden: { opacity: 0 },
   visible: {
+    opacity: 1,
     transition: {
-      staggerChildren: 0.12,
-      delayChildren: 0.06,
+      staggerChildren: 0.14,
+      delayChildren: 0.1,
     },
   },
 }
 
 export const staggerItem = {
-  hidden: { opacity: 0, y: 16 },
+  hidden: { opacity: 0, y: 30 },
   visible: (index = 0) => ({
     opacity: 1,
     y: 0,
-    transition: { duration: 0.72, ease: LUXURY_EASE, delay: index * 0.08 },
+    transition: { duration: 0.74, ease: LUXURY_EASE, delay: index * 0.08 },
   }),
 }
 
@@ -48,17 +52,17 @@ export const heroTextItem = {
   visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.78, ease: LUXURY_EASE },
+    transition: { duration: 0.76, ease: LUXURY_EASE },
   },
 }
 
 export const galleryCard = {
-  hidden: { opacity: 0, y: 12, scale: 0.985 },
+  hidden: { opacity: 0, y: 30, scale: 0.98 },
   visible: (index = 0) => ({
     opacity: 1,
     y: 0,
     scale: 1,
-    transition: { duration: 0.75, ease: LUXURY_EASE, delay: index * 0.06 },
+    transition: { duration: 0.78, ease: LUXURY_EASE, delay: index * 0.08 },
   }),
 }
 
