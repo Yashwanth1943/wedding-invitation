@@ -44,7 +44,7 @@ function EventCard({ title, date, time, venue, index }) {
     <Motion.article
       variants={staggerItem}
       custom={index}
-      className="rounded-3xl border border-[#e5cc9a] bg-[#fff8ea] p-5 shadow-[0_12px_28px_rgba(59,15,15,0.12)] will-change-transform sm:p-6"
+      className="rounded-3xl border border-[#e5cc9a] bg-[#fff8ea] p-5 shadow-[0_8px_18px_rgba(59,15,15,0.1)] sm:p-6"
     >
       <h3 className="font-playfair text-2xl text-[#6b1d1d]">{title}</h3>
       <div className="mt-4 space-y-2 text-sm text-zinc-700 sm:text-base">

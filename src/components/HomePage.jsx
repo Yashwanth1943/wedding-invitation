@@ -14,7 +14,7 @@ const pageTransition = {
 }
 
 const FAB_BASE =
-  'fixed z-[70] inline-flex min-h-12 items-center justify-center rounded-full px-4 py-3 text-sm font-semibold shadow-[0_12px_26px_rgba(33,8,8,0.35)] focus:outline-none focus:ring-2 focus:ring-[#d4af37] focus:ring-offset-2'
+  'fixed z-[70] inline-flex min-h-12 items-center justify-center rounded-full px-4 py-3 text-sm font-semibold shadow-[0_8px_18px_rgba(33,8,8,0.24)] focus:outline-none focus:ring-2 focus:ring-[#d4af37] focus:ring-offset-2'
 
 function BackgroundAudio({ audioRef }) {
   return (
@@ -22,7 +22,6 @@ function BackgroundAudio({ audioRef }) {
       ref={audioRef}
       src={weddingMusic}
       loop
-      autoPlay
       playsInline
       preload="auto"
     />
@@ -36,9 +35,9 @@ function MusicToggle({ isPlaying, onToggle }) {
       onClick={onToggle}
       className={`${FAB_BASE} bottom-[max(1rem,env(safe-area-inset-bottom))] left-4 border border-[#e6c46f]/75 bg-[#f7e9cb] text-[#4b1515] sm:left-6`}
       aria-label={isPlaying ? 'Pause background music' : 'Play background music'}
-      whileHover={subtleButtonMotion.whileHover}
       whileTap={subtleButtonMotion.whileTap}
       transition={subtleButtonMotion.transition}
+      style={{ willChange: 'transform, opacity' }}
     >
       {isPlaying ? 'Pause Music' : 'Play Music'}
     </Motion.button>
@@ -46,15 +45,33 @@ function MusicToggle({ isPlaying, onToggle }) {
 }
 
 function ScrollToTopButton() {
+  const handleScrollTop = () => {
+    const forceTop = () => {
+      window.scrollTo({ top: 0, left: 0, behavior: 'auto' })
+      document.documentElement.scrollTop = 0
+      document.body.scrollTop = 0
+    }
+
+    const isCoarsePointer = window.matchMedia('(pointer: coarse)').matches
+
+    if (isCoarsePointer) {
+      forceTop()
+      window.setTimeout(forceTop, 120)
+      return
+    }
+
+    window.scrollTo({ top: 0, left: 0, behavior: 'smooth' })
+  }
+
   return (
     <Motion.button
       type="button"
-      onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+      onClick={handleScrollTop}
       className={`${FAB_BASE} bottom-[max(1rem,env(safe-area-inset-bottom))] right-4 min-w-12 border border-[#f1d996]/45 bg-[#5a1818] text-[#f8de94] sm:right-6`}
       aria-label="Scroll to top"
-      whileHover={subtleButtonMotion.whileHover}
       whileTap={subtleButtonMotion.whileTap}
       transition={subtleButtonMotion.transition}
+      style={{ willChange: 'transform, opacity' }}
     >
       Top
     </Motion.button>
@@ -73,14 +90,14 @@ export default function HomePage({
       initial={{ opacity: 0 }}
       animate={{ opacity: isVisible ? 1 : 0 }}
       transition={pageTransition}
-      className="min-h-[100dvh] bg-[#fdf6ea] text-zinc-800"
+      className="w-full min-h-[100dvh] bg-[#fdf6ea] text-zinc-800"
       style={{ willChange: 'opacity', pointerEvents: isVisible ? 'auto' : 'none' }}
     >
       <BackgroundAudio audioRef={audioRef} />
 
       <Navbar />
 
-      <main className="overflow-x-hidden">
+      <main>
         <Hero />
         <Events />
         <Gallery />

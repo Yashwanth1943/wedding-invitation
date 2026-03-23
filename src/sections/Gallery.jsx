@@ -2,7 +2,6 @@ import { motion as Motion } from 'framer-motion'
 import {
   galleryCard,
   LUXURY_EASE,
-  sectionReveal,
   staggerContainer,
   staggerItem,
   VIEWPORT_ONCE,
@@ -16,18 +15,17 @@ const galleryImages = [img1, img2, img3, img4]
 
 function Gallery() {
   return (
-    <Motion.section
+    <section
       id="gallery"
-      className="bg-[#fdf6ea] px-4 py-16 sm:px-6 sm:py-20"
-      variants={sectionReveal}
-      initial="hidden"
-      whileInView="visible"
-      viewport={VIEWPORT_ONCE}
+      className="scroll-mt-24 bg-[#fdf6ea] px-4 py-16 sm:px-6 sm:py-20"
     >
       <div className="mx-auto w-full max-w-6xl">
         <Motion.div
           variants={staggerItem}
           className="text-center"
+          initial="hidden"
+          whileInView="visible"
+          viewport={VIEWPORT_ONCE}
         >
           <p className="text-xs font-semibold uppercase tracking-[0.25em] text-[#6b1d1d]">Memories</p>
           <h2 className="mt-3 font-playfair text-3xl text-[#3b0f0f] sm:text-4xl">Our Story In Frames</h2>
@@ -45,9 +43,8 @@ function Gallery() {
               key={`${index}-${image}`}
               variants={galleryCard}
               custom={index}
-              whileHover={{ scale: 1.03, transition: { duration: 0.6, ease: LUXURY_EASE } }}
-              whileTap={{ scale: 0.99, transition: { duration: 0.6, ease: LUXURY_EASE } }}
-              className="overflow-hidden rounded-2xl border border-[#e4ca99] bg-[#fff7e6] shadow-[0_8px_22px_rgba(59,15,15,0.12)] will-change-transform"
+              whileTap={{ scale: 0.95, transition: { duration: 0.6, ease: LUXURY_EASE } }}
+              className="overflow-hidden rounded-2xl border border-[#e4ca99] bg-[#fff7e6] shadow-[0_6px_16px_rgba(59,15,15,0.09)]"
             >
               <img
                 src={image}
@@ -61,10 +58,11 @@ function Gallery() {
           ))}
         </Motion.div>
       </div>
-    </Motion.section>
+    </section>
   )
 }
 
 export default Gallery
+
 
 

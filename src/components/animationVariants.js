@@ -6,7 +6,7 @@ export const VIEWPORT_ONCE = {
 }
 
 export const sectionReveal = {
-  hidden: { opacity: 0, y: 30 },
+  hidden: { opacity: 0, y: 20 },
   visible: {
     opacity: 1,
     y: 0,
@@ -25,7 +25,7 @@ export const staggerContainer = {
 }
 
 export const staggerItem = {
-  hidden: { opacity: 0, y: 24 },
+  hidden: { opacity: 0, y: 16 },
   visible: (index = 0) => ({
     opacity: 1,
     y: 0,
@@ -53,7 +53,7 @@ export const heroTextItem = {
 }
 
 export const galleryCard = {
-  hidden: { opacity: 0, y: 22, scale: 0.98 },
+  hidden: { opacity: 0, y: 12, scale: 0.985 },
   visible: (index = 0) => ({
     opacity: 1,
     y: 0,
@@ -63,7 +63,6 @@ export const galleryCard = {
 }
 
 export const subtleButtonMotion = {
-  whileHover: { scale: 1.05 },
   whileTap: { scale: 0.98 },
-  transition: { duration: 0.6, ease: LUXURY_EASE },
+  transition: { duration: 0.2, ease: LUXURY_EASE },
 }

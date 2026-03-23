@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { motion as Motion } from 'framer-motion'
-import { staggerContainer, staggerItem, VIEWPORT_ONCE } from './animationVariants'
+import { staggerContainer, staggerItem } from './animationVariants'
 
 const initialTimer = { days: '00', hours: '00', minutes: '00', seconds: '00' }
 
@@ -50,8 +50,7 @@ function Countdown({ targetDate }) {
       className="mt-8 grid w-full max-w-xs grid-cols-2 gap-3 sm:max-w-lg sm:grid-cols-4"
       variants={staggerContainer}
       initial="hidden"
-      whileInView="visible"
-      viewport={VIEWPORT_ONCE}
+      animate="visible"
     >
       {items.map((item, index) => (
         <Motion.div

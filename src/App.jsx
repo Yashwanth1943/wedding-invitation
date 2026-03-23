@@ -4,9 +4,10 @@ import HomePage from './components/HomePage'
 import IntroScreen from './components/IntroScreen'
 
 const INTRO_DURATION_MS = 3000
-const SCROLL_TOP_THRESHOLD = 180
+const SCROLL_TOP_SHOW_THRESHOLD_DESKTOP = 240
+const SCROLL_TOP_SHOW_THRESHOLD_MOBILE = 360
+const SCROLL_TOP_HIDE_GAP = 120
 const MUSIC_VOLUME = 0.3
-const AUTOPLAY_UNLOCK_EVENTS = ['pointerdown', 'keydown', 'touchstart', 'scroll']
 
 function useIntroTimer() {
   const [showIntro, setShowIntro] = useState(true)
@@ -21,11 +22,71 @@ function useIntroTimer() {
 
 function useScrollTopButton() {
   const [showTopButton, setShowTopButton] = useState(false)
+  const frameRef = useRef(0)
+  const lastVisibleRef = useRef(false)
+  const showThresholdRef = useRef(SCROLL_TOP_SHOW_THRESHOLD_DESKTOP)
 
   useEffect(() => {
-    const onScroll = () => setShowTopButton(window.scrollY > SCROLL_TOP_THRESHOLD)
+    const getFallbackThreshold = () => {
+      const isMobile = window.matchMedia('(max-width: 767px), (pointer: coarse)').matches
+      return isMobile ? SCROLL_TOP_SHOW_THRESHOLD_MOBILE : SCROLL_TOP_SHOW_THRESHOLD_DESKTOP
+    }
+
+    const getHeroEndThreshold = () => {
+      const heroSection = document.getElementById('home')
+      if (!heroSection) return getFallbackThreshold()
+
+      const rect = heroSection.getBoundingClientRect()
+      const heroTop = window.scrollY + rect.top
+      const heroBottom = heroTop + rect.height
+      return Math.max(getFallbackThreshold(), heroBottom - 32)
+    }
+
+    const syncThreshold = () => {
+      showThresholdRef.current = getHeroEndThreshold()
+    }
+
+    const evaluateVisibility = () => {
+      const scrollY = window.scrollY || window.pageYOffset
+      const showThreshold = showThresholdRef.current
+      const hideThreshold = Math.max(0, showThreshold - SCROLL_TOP_HIDE_GAP)
+
+      const nextVisible = lastVisibleRef.current
+        ? scrollY > hideThreshold
+        : scrollY > showThreshold
+
+      if (lastVisibleRef.current !== nextVisible) {
+        lastVisibleRef.current = nextVisible
+        setShowTopButton(nextVisible)
+      }
+    }
+
+    const onScroll = () => {
+      if (frameRef.current) return
+      frameRef.current = window.requestAnimationFrame(() => {
+        frameRef.current = 0
+        evaluateVisibility()
+      })
+    }
+
+    const onResize = () => {
+      syncThreshold()
+      evaluateVisibility()
+    }
+
+    syncThreshold()
+    evaluateVisibility()
+    window.setTimeout(onResize, 120)
     window.addEventListener('scroll', onScroll, { passive: true })
-    return () => window.removeEventListener('scroll', onScroll)
+    window.addEventListener('resize', onResize)
+    window.addEventListener('orientationchange', onResize)
+
+    return () => {
+      window.removeEventListener('scroll', onScroll)
+      window.removeEventListener('resize', onResize)
+      window.removeEventListener('orientationchange', onResize)
+      if (frameRef.current) window.cancelAnimationFrame(frameRef.current)
+    }
   }, [])
 
   return showTopButton
@@ -41,32 +102,15 @@ function useBackgroundAudio() {
 
     audio.volume = MUSIC_VOLUME
 
-    const tryAutoplay = async () => {
-      try {
-        await audio.play()
-        setIsPlayingMusic(true)
-      } catch {
-        setIsPlayingMusic(false)
-      }
-    }
-
-    const startOnInteraction = () => {
-      if (!audioRef.current?.paused) return
-      audioRef.current.play()
-        .then(() => setIsPlayingMusic(true))
-        .catch(() => {})
-    }
-
-    void tryAutoplay()
-
-    AUTOPLAY_UNLOCK_EVENTS.forEach((event) => {
-      window.addEventListener(event, startOnInteraction, { passive: true })
-    })
+    const handlePlay = () => setIsPlayingMusic(true)
+    const handlePause = () => setIsPlayingMusic(false)
+    audio.addEventListener('play', handlePlay)
+    audio.addEventListener('pause', handlePause)
+    setIsPlayingMusic(!audio.paused)
 
     return () => {
-      AUTOPLAY_UNLOCK_EVENTS.forEach((event) => {
-        window.removeEventListener(event, startOnInteraction)
-      })
+      audio.removeEventListener('play', handlePlay)
+      audio.removeEventListener('pause', handlePause)
     }
   }, [])
 
@@ -96,6 +140,25 @@ export default function App() {
   const showIntro = useIntroTimer()
   const showTopButton = useScrollTopButton()
   const { audioRef, isPlayingMusic, toggleMusic } = useBackgroundAudio()
+
+  useEffect(() => {
+    // Lock both root and body only during intro; clear styles afterwards.
+    if (showIntro) {
+      document.documentElement.style.overflow = 'hidden'
+      document.body.style.overflow = 'hidden'
+      return () => {
+        document.documentElement.style.overflow = ''
+        document.body.style.overflow = ''
+      }
+    }
+
+    document.documentElement.style.overflow = ''
+    document.body.style.overflow = ''
+    return () => {
+      document.documentElement.style.overflow = ''
+      document.body.style.overflow = ''
+    }
+  }, [showIntro])
 
   return (
     <>
