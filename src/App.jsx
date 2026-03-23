@@ -13,58 +13,55 @@ function App() {
   const audioRef = useRef(null)
 
   useEffect(() => {
-    const handleScroll = () => {
+    const onScroll = () => {
       setShowTopButton(window.scrollY > 320)
     }
 
-    window.addEventListener('scroll', handleScroll)
-    return () => window.removeEventListener('scroll', handleScroll)
+    window.addEventListener('scroll', onScroll)
+    return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
-    // Replace your music useEffect with this:
   useEffect(() => {
-      const audio = audioRef.current
-      if (!audio) return
+    const audio = audioRef.current
+    if (!audio) {
+      return
+    }
 
-      // Set volume before playing
-      audio.volume = 0.3
+    audio.volume = 0.3
 
-      const tryAutoPlay = async () => {
-        try {
-          await audio.play()
-          setIsPlayingMusic(true)
-        } catch {
-          // Autoplay blocked — wait for first interaction
-          setIsPlayingMusic(false)
-        }
+    const tryAutoplay = async () => {
+      try {
+        await audio.play()
+        setIsPlayingMusic(true)
+      } catch {
+        setIsPlayingMusic(false)
+      }
+    }
+
+    const startOnInteraction = () => {
+      if (!audioRef.current || !audioRef.current.paused) {
+        return
       }
 
-      const onFirstInteraction = () => {
-        if (!isPlayingMusic && audioRef.current?.paused) {
-          audioRef.current.play()
-            .then(() => setIsPlayingMusic(true))
-            .catch(() => {})
-        }
-        // Remove all listeners after first successful interaction
-        cleanup()
-      }
+      audioRef.current.play()
+        .then(() => setIsPlayingMusic(true))
+        .catch(() => {})
+    }
 
-      const cleanup = () => {
-        window.removeEventListener('pointerdown', onFirstInteraction)
-        window.removeEventListener('keydown', onFirstInteraction)
-        window.removeEventListener('touchstart', onFirstInteraction)
-        window.removeEventListener('scroll', onFirstInteraction)
-      }
+    void tryAutoplay()
+    window.addEventListener('pointerdown', startOnInteraction)
+    window.addEventListener('keydown', startOnInteraction)
+    window.addEventListener('touchstart', startOnInteraction)
+    window.addEventListener('scroll', startOnInteraction)
 
-      void tryAutoPlay()
+    return () => {
+      window.removeEventListener('pointerdown', startOnInteraction)
+      window.removeEventListener('keydown', startOnInteraction)
+      window.removeEventListener('touchstart', startOnInteraction)
+      window.removeEventListener('scroll', startOnInteraction)
+    }
+  }, [])
 
-      window.addEventListener('pointerdown', onFirstInteraction)
-      window.addEventListener('keydown', onFirstInteraction)
-      window.addEventListener('touchstart', onFirstInteraction)
-      window.addEventListener('scroll', onFirstInteraction)
-
-      return cleanup
-    }, []) // ← Empty deps: run once on mount only
   const toggleMusic = async () => {
     if (!audioRef.current) {
       return
@@ -94,15 +91,6 @@ function App() {
         autoPlay
         playsInline
         preload="auto"
-        muted={false}
-        onCanPlay={() => {
-          const audio = audioRef.current
-          if (audio && audio.paused && !isPlayingMusic) {
-            audio.play()
-              .then(() => setIsPlayingMusic(true))
-              .catch(() => {})
-          }
-        }}
       />
 
       <Navbar />

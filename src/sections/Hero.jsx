@@ -1,3 +1,4 @@
+import { motion as Motion } from 'framer-motion'
 import Countdown from '../components/Countdown'
 import heroImage from '../assets/hero.png'
 
@@ -16,21 +17,41 @@ function Hero() {
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_bottom_left,rgba(255,182,193,0.2),transparent_55%)]" />
 
       <div className="relative mx-auto flex w-full max-w-3xl flex-col items-center text-center">
-        <p className="fade-in glass-card rounded-full px-5 py-2 text-xs font-semibold uppercase tracking-[0.25em] text-amber-100">
+        <Motion.p
+          initial={{ opacity: 0, y: 14 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.55 }}
+          className="glass-card rounded-full px-5 py-2 text-xs font-semibold uppercase tracking-[0.25em] text-amber-100"
+        >
           Save The Date
-        </p>
+        </Motion.p>
 
-        <h1 className="fade-in mt-5 font-playfair-sc text-4xl leading-tight text-[#fff5e9] sm:text-5xl md:text-6xl">
+        <Motion.h1
+          initial={{ opacity: 0, y: 24 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.15 }}
+          className="mt-5 font-playfair text-4xl leading-tight text-[#fff5e9] sm:text-5xl md:text-6xl"
+        >
           Madhavi Latha <br /> <span className="px-1 text-amber-200">&amp;</span> <br /> Ram Kiran
-        </h1>
+        </Motion.h1>
 
-        <p className="fade-in mt-4 max-w-xl text-sm font-playfair uppercase tracking-wide text-amber-100/95 sm:text-base md:text-lg">
+        <Motion.p
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.65, delay: 0.35 }}
+          className="mt-4 max-w-xl text-sm font-playfair uppercase tracking-wide text-amber-100/95 sm:text-base md:text-lg"
+        >
           Thursday, April 02, 2026 | 09:18 AM onwards
-        </p>
+        </Motion.p>
 
-        <p className="fade-in mt-3 max-w-md text-sm text-rose-100/95 sm:text-base">
+        <Motion.p
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.65, delay: 0.45 }}
+          className="mt-3 max-w-md text-sm text-rose-100/95 sm:text-base"
+        >
           Two hearts, one forever. Your presence will make our celebration complete.
-        </p>
+        </Motion.p>
 
         <Countdown targetDate="2026-04-02T09:18:00+05:30" />
       </div>
@@ -39,3 +60,4 @@ function Hero() {
 }
 
 export default Hero
+
